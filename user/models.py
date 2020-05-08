@@ -7,9 +7,10 @@ from datetime import datetime
 
 class UserDetail(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    country = models.CharField(max_length=100)
+    country = models.CharField(max_length=100, blank=True)
+    city = models.CharField(max_length=100, blank=True)
     image = models.ImageField(default='default.jpg', upload_to='profile_pic')
-    created_on = models.DateTimeField(default=datetime.now(), blank=True)
+    created_on = models.DateField(default=datetime.now(), blank=True)
 
     def __str__(self):
         return f'{self.user.username} details '
@@ -40,10 +41,20 @@ class UserSocialMedia(models.Model):
 class UserEducation(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     school = models.CharField(max_length=100, blank=True)
-    started = models.DateTimeField(blank=True)
-    ended = models.DateTimeField(blank=True)
+    started = models.DateField(blank=True)
+    ended = models.DateField(blank=True)
     degree = models.CharField(max_length=100, blank=True)
     description = models.TextField(blank=True)
 
     def __str__(self):
         return f'{self.user.username} education'
+
+
+class UserExperience(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    created_on = models.DateField(default=datetime.now())
+    post = models.CharField(max_length=100, blank=True)
+    description = models.TextField(blank=True)
+
+    def __str__(self):
+        return f'{self.user.username} Experience'

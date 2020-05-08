@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import UserDetail, UserSocialMedia, UserEducation
+from .models import UserDetail, UserSocialMedia, UserEducation, UserExperience
 
 
 class UserDetailAdmin(admin.ModelAdmin):
@@ -16,4 +16,5 @@ class UserEducationAdmin(admin.ModelAdmin):
 
 admin.site.register(UserDetail, UserDetailAdmin)
 admin.site.register(UserSocialMedia)
+admin.site.register(UserExperience)
 admin.site.register(UserEducation, UserEducationAdmin)
